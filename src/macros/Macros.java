@@ -7,14 +7,14 @@ public class Macros {
     public static int k = 8;
     public static int machine_number = 0;
     public static int total_machine_number = 1;
-    public static int p_size = 1 << 22;
+    public static int p_size = 1 << 26;
 
     public static int barrier_port = 8862;
     public static int barrier_port2 = 7862;
     public static String[] machine_ips;
 
-    public static int buffer_size = 1 << 25;
-    public static int trunk_size = 1 << 20;
+    public static int buffer_size = 1 << 28;
+    public static int trunk_size = 1 << 22;
 
     static {
         machine_ips = new String[total_machine_number];

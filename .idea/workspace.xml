@@ -25,11 +25,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Chaos.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Chaos.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Chaos.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.64772725" vertical-offset="228" max-vertical-offset="1577">
-              <caret line="24" column="19" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="627" max-vertical-offset="1577">
+              <caret line="46" column="50" selection-start-line="46" selection-start-column="50" selection-end-line="46" selection-end-column="50" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -70,7 +70,7 @@
       <file leaf-file-name="Calculate.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/engine/Calculate.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="902" max-vertical-offset="3857">
+            <state vertical-scroll-proportion="0.0" vertical-offset="845" max-vertical-offset="3857">
               <caret line="59" column="12" selection-start-line="59" selection-start-column="12" selection-end-line="59" selection-end-column="12" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -79,10 +79,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Macros.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Macros.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/macros/Macros.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="57" max-vertical-offset="1368">
+            <state vertical-scroll-proportion="0.8636364" vertical-offset="0" max-vertical-offset="1368">
               <caret line="16" column="43" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
               <folding />
             </state>
@@ -137,8 +137,8 @@
         <option value="$PROJECT_DIR$/src/engine/WriteUpdateBuffer.java" />
         <option value="$PROJECT_DIR$/src/engine/Storage.java" />
         <option value="$PROJECT_DIR$/src/engine/Calculate.java" />
-        <option value="$PROJECT_DIR$/src/macros/Macros.java" />
         <option value="$PROJECT_DIR$/src/Chaos.java" />
+        <option value="$PROJECT_DIR$/src/macros/Macros.java" />
       </list>
     </option>
   </component>
@@ -1056,6 +1056,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Chaos.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="627" max-vertical-offset="1577">
+          <caret line="46" column="50" selection-start-line="46" selection-start-column="50" selection-end-line="46" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/engine/Calculate.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="902" max-vertical-offset="3857">
@@ -1068,19 +1078,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/macros/Macros.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="57" max-vertical-offset="1368">
+        <state vertical-scroll-proportion="0.8636364" vertical-offset="0" max-vertical-offset="1368">
           <caret line="16" column="43" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Chaos.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.64772725" vertical-offset="228" max-vertical-offset="1577">
-          <caret line="24" column="19" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
