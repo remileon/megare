@@ -50,7 +50,7 @@ public class Macros {
     }
 
     public static int decodeInt(byte[] b, int offset) {
-        return (int)(b[offset] & 0xff) | ((int)(b[offset + 1] & 0xff) << 8) | ((int)(b[offset + 2] & 0xff) << 16) | ((int)(b[offset + 3] & 0xff) << 24);
+        return (int) (b[offset] & 0xff) | ((int) (b[offset + 1] & 0xff) << 8) | ((int) (b[offset + 2] & 0xff) << 16) | ((int) (b[offset + 3] & 0xff) << 24);
     }
 
     public static void encodeDouble(double x, byte[] b, int offset) {
@@ -66,7 +66,7 @@ public class Macros {
     }
 
     public static double decodeDouble(byte[] b, int offset) {
-        return Double.longBitsToDouble((long)b[offset] | ((long)b[offset + 1] << 8) | ((long)b[offset + 2] << 16) | ((long)b[offset + 3] << 24) |
-                ((long)b[offset + 4] << 32) | ((long)b[offset + 5] << 40) | ((long)b[offset + 6] << 48) | ((long)b[offset + 7] << 56));
+        return Double.longBitsToDouble((long) b[offset] | ((long) b[offset + 1] << 8) | ((long) b[offset + 2] << 16) | ((long) b[offset + 3] << 24) |
+                ((long) b[offset + 4] << 32) | ((long) b[offset + 5] << 40) | ((long) b[offset + 6] << 48) | ((long) b[offset + 7] << 56));
     }
 }

@@ -7,6 +7,7 @@ import macros.Macros;
  */
 public class SimpleUpdate extends SavableImp {
     public int to;
+
     @Override
     public void save(byte[] buffer, int offset) {
         Macros.encodeInt(to, buffer, offset);

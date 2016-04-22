@@ -3,18 +3,16 @@ import engine.Barrier;
 import engine.Calculate;
 import engine.Storage;
 import macros.Macros;
-import model.*;
-import sun.nio.ch.Net;
+import model.AccumDouble;
+import model.NodeWithDegreeDouble;
+import model.SimpleEdge;
+import model.UpdateDouble;
 
-import javax.crypto.Mac;
 import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CyclicBarrier;
 
@@ -58,6 +56,7 @@ public class Chaos {
 
     public static class NetBarrier implements Runnable {
         ServerSocket ss;
+
         public NetBarrier() {
             try {
                 ss = new ServerSocket(Macros.barrier_port2);

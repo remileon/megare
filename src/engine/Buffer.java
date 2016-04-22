@@ -2,8 +2,6 @@ package engine;
 
 import macros.Macros;
 
-import javax.crypto.Mac;
-
 /**
  * Created by yibai on 2016/3/28.
  */

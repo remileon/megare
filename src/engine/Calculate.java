@@ -136,6 +136,7 @@ public class Calculate<Node extends SavableImp, Accum, Update extends SimpleUpda
 
         private class InnerReader implements Runnable {
             byte[] readerBuffer;
+
             public InnerReader() {
                 readerBuffer = new byte[Macros.trunk_size];
             }

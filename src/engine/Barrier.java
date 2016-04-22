@@ -2,8 +2,6 @@ package engine;
 
 import macros.Macros;
 
-import javax.crypto.Mac;
-import java.io.FileOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 

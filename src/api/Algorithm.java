@@ -7,6 +7,8 @@ import model.Savable;
  */
 public interface Algorithm<Node extends Savable, Accum, Update extends Savable> {
     public Update scatter(Update u, Node n);
+
     public Accum gather(Accum a, Update u);
+
     public Node apply(Node n, Accum a);
 }

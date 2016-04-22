@@ -7,12 +7,15 @@ public class CalculateNetwork<E, U> {
     public void putEdges() {
 
     }
+
     public E getEdgeTrunk(int partitionNumber) {
         return null;
     }
+
     public U getUpdateTrunk(int partitionNumber) {
         return null;
     }
+
     public void saveUpdateTrunk(int partitionNumber) {
 
     }

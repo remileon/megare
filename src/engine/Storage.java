@@ -4,14 +4,16 @@ import macros.Macros;
 import model.SavableImp;
 import model.SimpleEdge;
 
-import java.io.*;
+import java.io.File;
+import java.io.InputStream;
+import java.io.RandomAccessFile;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
  * Created by yibai on 2016/3/22.
  */
-public class Storage<Node extends SavableImp, Accum, Update extends SavableImp, Edge extends SimpleEdge> implements Runnable  {
+public class Storage<Node extends SavableImp, Accum, Update extends SavableImp, Edge extends SimpleEdge> implements Runnable {
     RandomAccessFile[] eFile;
     RandomAccessFile[] uFile;
 
@@ -59,12 +61,13 @@ public class Storage<Node extends SavableImp, Accum, Update extends SavableImp, 
             this.socket = socket;
             buffer = new byte[Macros.trunk_size];
         }
+
         public void run() {
             try {
                 InputStream is = socket.getInputStream();
                 int op = is.read();
                 int p_num, size;
-                switch (op)  {
+                switch (op) {
                     case Macros.OP_FIGHT:
                         socket.getOutputStream().write("765pro fight~ oh!".getBytes());
                         break;

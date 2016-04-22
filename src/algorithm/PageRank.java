@@ -12,7 +12,7 @@ public class PageRank implements Algorithm<NodeWithDegreeDouble, AccumDouble, Up
 
     @Override
     public UpdateDouble scatter(UpdateDouble u, NodeWithDegreeDouble n) {
-        u.value =  n.value/n.degree;
+        u.value = n.value / n.degree;
         return u;
     }
 
