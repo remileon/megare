@@ -64,7 +64,7 @@ public class Calculate<Node extends SavableImp, Accum, Update extends SimpleUpda
 
     public void run() {
         System.out.println("running calculate " + p_num);
-        for (int k = 0; k < 1; ++k) {
+        for (int k = 0; k < 10; ++k) {
             try {
                 System.out.println("calculate" + p_num + ": scatter start");
                 new Thread(new Reader(Macros.OP_GET_EDGE)).start();
