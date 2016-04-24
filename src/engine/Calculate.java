@@ -47,8 +47,8 @@ public class Calculate<Node extends SavableImp, Accum, Update extends SimpleUpda
         nodes = (Node[]) Array.newInstance(nodeInstance.getClass(), Macros.p_size);
         accums = (Accum[]) Array.newInstance(accumInstance.getClass(), Macros.p_size);
         for (int i = 0; i < Macros.p_size; ++i) {
-            nodes[i] = (Node) nodeInstance.getClass().newInstance();
-            accums[i] = (Accum) accumInstance.getClass().newInstance();
+//            nodes[i] = (Node) nodeInstance.getClass().newInstance();
+//            accums[i] = (Accum) accumInstance.getClass().newInstance();
         }
         flags = new boolean[Macros.total_machine_number];
         System.out.println("calculate" + p_num + ": construct completed");
