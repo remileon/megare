@@ -32,7 +32,7 @@ public class Chaos {
         CyclicBarrier barrier = new CyclicBarrier(Macros.k, netBarrier);
         Thread[] calculators = new Thread[Macros.k];
         for (int i = 0; i < Macros.k; ++i) {
-            calculators[i] = new Thread(new Calculate<>(Macros.machine_number * Macros.k + i, barrier, new PageRank(), new SimpleEdge(), new UpdateDouble(), new NodeWithDegreeDouble[Macros.p_size], new NodeWithDegreeDouble(), new AccumDouble[Macros.p_size], new AccumDouble()));
+            calculators[i] = new Thread(new Calculate<>(Macros.machine_number * Macros.k + i, barrier, new PageRank(), new SimpleEdge(), new UpdateDouble(), new NodeWithDegreeDouble[Macros.p_size], new AccumDouble[Macros.p_size], new AccumDouble()));
         }
         for (int i = 0; i < Macros.k; ++i) {
             calculators[i].start();
