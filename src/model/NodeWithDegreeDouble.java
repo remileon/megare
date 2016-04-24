@@ -6,13 +6,8 @@ import macros.Macros;
  * Created by yibai on 2016/3/16.
  */
 public class NodeWithDegreeDouble extends SavableImp {
-    public double value;
-    public int degree;
-
-    public NodeWithDegreeDouble() {
-        value = 1.0;
-        degree = 1;
-    }
+    public double value = 1.0;
+    public int degree = 1;
 
     @Override
     public int size() {

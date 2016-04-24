@@ -29,14 +29,13 @@ public class Calculate<Node extends SavableImp, Accum, Update extends SimpleUpda
     Node nodeInstance;
     Accum accumInstance;
 
-    public Calculate(int p_num, CyclicBarrier barrier, Algorithm<Node, Accum, Update> algorithm, Edge edgeInstance, Update updateInstance, Node nodeInstance, Accum accumInstance) throws Exception {
+    public Calculate(int p_num, CyclicBarrier barrier, Algorithm<Node, Accum, Update> algorithm, Edge edgeInstance, Update updateInstance, Node[] nodes, Accum[] accums, Accum accumInstance) throws Exception {
         System.out.println("calculate" + p_num + ": constructing");
         this.p_num = p_num;
         this.barrier = barrier;
         this.algorithm = algorithm;
         this.edgeInstance = edgeInstance;
         this.updateInstance = updateInstance;
-        this.nodeInstance = nodeInstance;
         this.accumInstance = accumInstance;
 
         System.out.println("creating buffer");
@@ -44,8 +43,8 @@ public class Calculate<Node extends SavableImp, Accum, Update extends SimpleUpda
         System.out.println("creating wBuffer");
         wBuffer = new WriteUpdateBuffer<>(p_num);
         System.out.println("crating Others");
-        nodes = (Node[]) Array.newInstance(nodeInstance.getClass(), Macros.p_size);
-        accums = (Accum[]) Array.newInstance(accumInstance.getClass(), Macros.p_size);
+        this.nodes = nodes;
+        this.accums = accums;
         for (int i = 0; i < Macros.p_size; ++i) {
             nodes[i] = (Node) nodeInstance.getClass().newInstance();
             accums[i] = (Accum) accumInstance.getClass().newInstance();
