@@ -30,6 +30,7 @@ public class Calculate<Node extends SavableImp, Accum, Update extends SimpleUpda
     Accum accumInstance;
 
     public Calculate(int p_num, CyclicBarrier barrier, Algorithm<Node, Accum, Update> algorithm, Edge edgeInstance, Update updateInstance, Node nodeInstance, Accum accumInstance) throws Exception {
+        System.out.println("calculate" + p_num + ": constructing");
         this.p_num = p_num;
         this.barrier = barrier;
         this.algorithm = algorithm;
@@ -47,6 +48,7 @@ public class Calculate<Node extends SavableImp, Accum, Update extends SimpleUpda
             accums[i] = (Accum) accumInstance.getClass().newInstance();
         }
         flags = new boolean[Macros.total_machine_number];
+        System.out.println("calculate" + p_num + ": construct completed");
     }
 
     public static int Puzzle(int[] a) {
