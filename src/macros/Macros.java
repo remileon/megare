@@ -13,7 +13,7 @@ public class Macros {
     public static int barrier_port2 = 7862;
     public static String[] machine_ips;
 
-    public static int buffer_size = 1 << 28;
+    public static int buffer_size = 1 << 26;
     public static int trunk_size = 1 << 22;
 
     static {
