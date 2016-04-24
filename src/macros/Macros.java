@@ -7,7 +7,7 @@ public class Macros {
     public static int k = 8;
     public static int machine_number = 0;
     public static int total_machine_number = 1;
-    public static int p_size = 1 << 26;
+    public static int p_size = 1 << 24;
 
     public static int barrier_port = 8862;
     public static int barrier_port2 = 7862;
