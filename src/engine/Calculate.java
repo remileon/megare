@@ -2,9 +2,7 @@ package engine;
 
 import api.Algorithm;
 import macros.Macros;
-import model.SavableImp;
-import model.SimpleEdge;
-import model.SimpleUpdate;
+import model.*;
 
 import java.lang.reflect.Array;
 import java.net.Socket;
@@ -49,6 +47,8 @@ public class Calculate<Node extends SavableImp, Accum, Update extends SimpleUpda
         for (int i = 0; i < Macros.p_size; ++i) {
 //            nodes[i] = (Node) nodeInstance.getClass().newInstance();
 //            accums[i] = (Accum) accumInstance.getClass().newInstance();
+            nodes[i] = (Node) new NodeWithDegreeDouble();
+            accums[i] = (Accum) new AccumDouble();
         }
         flags = new boolean[Macros.total_machine_number];
         System.out.println("calculate" + p_num + ": construct completed");
