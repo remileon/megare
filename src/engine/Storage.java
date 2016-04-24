@@ -9,13 +9,16 @@ import java.io.InputStream;
 import java.io.RandomAccessFile;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by yibai on 2016/3/22.
  */
 public class Storage<Node extends SavableImp, Accum, Update extends SavableImp, Edge extends SimpleEdge> implements Runnable {
     RandomAccessFile[] eFile;
-    RandomAccessFile[] uFile;
+    RandomAccessFile[][] uFile;
+    int uFileTop[];
 
     Edge edgeInstance;
     Update updateInstance;
@@ -27,15 +30,18 @@ public class Storage<Node extends SavableImp, Accum, Update extends SavableImp, 
         this.updateInstance = updateInstance;
 
         eFile = new RandomAccessFile[Macros.k];
-        uFile = new RandomAccessFile[Macros.k * Macros.total_machine_number];
+        uFile = new RandomAccessFile[Macros.k * Macros.total_machine_number][Macros.k];
+        uFileTop = new int[Macros.k * Macros.total_machine_number];
 
         for (int i = 0; i < Macros.k; ++i) {
             eFile[i] = new RandomAccessFile(Macros.eFilename(Macros.k * Macros.machine_number + i), "r");
         }
 
         for (int i = 0; i < Macros.k * Macros.total_machine_number; ++i) {
-            new File(Macros.uFilename(i)).createNewFile();
-            uFile[i] = new RandomAccessFile(Macros.uFilename(i), "r");
+            for (int from = 0; from < Macros.k; ++from) {
+                new File(Macros.uFilename(i, from + Macros.machine_number * Macros.k)).createNewFile();
+                uFile[i][from] = new RandomAccessFile(Macros.uFilename(i, from + Macros.machine_number * Macros.k), "r");
+            }
         }
 
         ss = new ServerSocket(5765);
@@ -44,9 +50,10 @@ public class Storage<Node extends SavableImp, Accum, Update extends SavableImp, 
     public void run() {
         System.out.println("running storage");
         try {
+            ExecutorService fixedThreadPool = Executors.newFixedThreadPool(100);
             while (true) {
                 Socket socket = ss.accept();
-                new Thread(new Dealer(socket)).start();
+                fixedThreadPool.execute(new Dealer(socket));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -84,7 +91,14 @@ public class Storage<Node extends SavableImp, Accum, Update extends SavableImp, 
                     case Macros.OP_GET_UPDATE:
                         p_num = is.read();
                         synchronized (uFile[p_num]) {
-                            size = uFile[p_num].read(buffer, 4, updateInstance.align(buffer.length - 4));
+                            size = uFile[p_num][uFileTop[p_num]].read(buffer, 4, updateInstance.align(buffer.length - 4));
+                            while (size == -1) {
+                                ++uFileTop[p_num];
+                                if (uFileTop[p_num] >= uFile[p_num].length) {
+                                    break;
+                                }
+                                size = uFile[p_num][uFileTop[p_num]].read(buffer, 4, updateInstance.align(buffer.length - 4));
+                            }
                         }
                         Macros.encodeInt(size, buffer, 0);
                         socket.getOutputStream().write(buffer);
@@ -93,8 +107,11 @@ public class Storage<Node extends SavableImp, Accum, Update extends SavableImp, 
                         for (int i = 0; i < Macros.k; ++i) {
                             eFile[i].seek(0);
                         }
-                        for (int i = 0; i < Macros.k * Macros.total_machine_number; ++i) {
-                            uFile[i].seek(0);
+                        for (int i = 0; i < uFile.length; ++i) {
+                            uFileTop[i] = 0;
+                            for (int j = 0; j < uFile[i].length; ++j) {
+                                uFile[i][j].seek(0);
+                            }
                         }
                 }
                 socket.close();

@@ -21,7 +21,9 @@ import java.util.concurrent.CyclicBarrier;
  */
 public class Chaos {
     public static void main(String args[]) throws Exception {
-        generateTestEdge();
+
+
+//        generateTestEdge();
         Macros.machine_number = Integer.parseInt(args[0]);
         if (Macros.machine_number == 0) {
             new Thread(new Barrier()).start();
@@ -31,8 +33,28 @@ public class Chaos {
         netBarrier.run();
         CyclicBarrier barrier = new CyclicBarrier(Macros.k, netBarrier);
         for (int i = 0; i < Macros.k; ++i) {
-            new Thread(new Calculate<NodeWithDegreeDouble, AccumDouble, UpdateDouble, SimpleEdge>(Macros.machine_number * Macros.k + i, barrier, new PageRank(), new SimpleEdge(), new UpdateDouble(), new NodeWithDegreeDouble(), new AccumDouble())).start();
+            new Thread(new Calculate<>(Macros.machine_number * Macros.k + i, barrier, new PageRank(), new SimpleEdge(), new UpdateDouble(), new NodeWithDegreeDouble(), new AccumDouble())).start();
         }
+//        for (int i = 0; i < 4; ++i) {
+//            new Thread(() -> {
+//                long start = System.currentTimeMillis();
+//                int b = 0;
+//                int d = 1;
+//                int c = Integer.parseInt(args[0]);
+//                Random r = new Random();
+//                int[] place = new int[100000000];
+//                for (int i1 = 0; i1 < 1000000000; ++i1) {
+//                    int g = b;
+//                    b = b + d;
+//                    d = g;
+//                    place[i1 % 1000000] = b;
+//                }
+//                long stop = System.currentTimeMillis();
+//                System.out.println(b);
+//                System.out.println(place[c]);
+//                System.out.println(stop - start);
+//            }).start();
+//        }
     }
 
     private static void generateTestEdge() throws Exception {

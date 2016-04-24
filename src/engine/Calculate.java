@@ -39,7 +39,7 @@ public class Calculate<Node extends SavableImp, Accum, Update extends SimpleUpda
         this.accumInstance = accumInstance;
 
         buffer = new Buffer();
-        wBuffer = new WriteUpdateBuffer<>();
+        wBuffer = new WriteUpdateBuffer<>(p_num);
         nodes = (Node[]) Array.newInstance(nodeInstance.getClass(), Macros.p_size);
         accums = (Accum[]) Array.newInstance(accumInstance.getClass(), Macros.p_size);
         for (int i = 0; i < Macros.p_size; ++i) {
@@ -49,9 +49,17 @@ public class Calculate<Node extends SavableImp, Accum, Update extends SimpleUpda
         flags = new boolean[Macros.total_machine_number];
     }
 
+    public static int Puzzle(int[] a) {
+        int ret = 0;
+        for (int i = 0; i < a.length; ++i) {
+            ret += new Integer(a[i]).compareTo(0);
+        }
+        return ret;
+    }
+
     public void run() {
         System.out.println("running calculate " + p_num);
-        for (int k = 0; k < 100; ++k) {
+        for (int k = 0; k < 1; ++k) {
             try {
                 System.out.println("calculate" + p_num + ": scatter start");
                 new Thread(new Reader(Macros.OP_GET_EDGE)).start();

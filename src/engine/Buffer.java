@@ -21,7 +21,7 @@ public class Buffer {
         end = false;
     }
 
-    public int read() throws Exception {
+    public final int read() throws Exception {
 //        System.out.println("reading");
         if (end && size == 0)
             return -1;
@@ -35,7 +35,7 @@ public class Buffer {
         return top;
     }
 
-    public void free() {
+    public final void free() {
         top = (top + Macros.trunk_size) % buffer.length;
         size = size - Macros.trunk_size;
         synchronized (writeLock) {
@@ -43,7 +43,7 @@ public class Buffer {
         }
     }
 
-    public void write(byte[] readerBuffer) throws Exception {
+    public final void write(byte[] readerBuffer) throws Exception {
 //        System.out.println("writing");
         if (size == buffer.length) {
             synchronized (writeLock) {
@@ -59,14 +59,14 @@ public class Buffer {
         }
     }
 
-    public void endWrite() {
+    public final void endWrite() {
         end = true;
         synchronized (readLock) {
             readLock.notify();
         }
     }
 
-    public void restart() {
+    public final void restart() {
         top = 0;
         size = 0;
         end = false;

@@ -37,8 +37,8 @@ public class Macros {
         return "VERTEX" + p_num;
     }
 
-    public static String uFilename(int p_num) {
-        return "UPDATE" + p_num;
+    public static String uFilename(int p_num, int from) {
+        return "UPDATE" + p_num + "_" + from;
     }
 
     public static void encodeInt(int x, byte[] b, int offset) {
