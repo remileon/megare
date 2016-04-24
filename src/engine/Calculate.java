@@ -29,7 +29,7 @@ public class Calculate<Node extends SavableImp, Accum, Update extends SimpleUpda
     Node nodeInstance;
     Accum accumInstance;
 
-    public Calculate(int p_num, CyclicBarrier barrier, Algorithm<Node, Accum, Update> algorithm, Edge edgeInstance, Update updateInstance, Node[] nodes, Accum[] accums, Accum accumInstance) throws Exception {
+    public Calculate(int p_num, CyclicBarrier barrier, Algorithm<Node, Accum, Update> algorithm, Edge edgeInstance, Update updateInstance, Node[] nodes, Node nodeInstance, Accum[] accums, Accum accumInstance) throws Exception {
         System.out.println("calculate" + p_num + ": constructing");
         this.p_num = p_num;
         this.barrier = barrier;
