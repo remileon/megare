@@ -39,8 +39,11 @@ public class Calculate<Node extends SavableImp, Accum, Update extends SimpleUpda
         this.nodeInstance = nodeInstance;
         this.accumInstance = accumInstance;
 
+        System.out.println("creating buffer");
         buffer = new Buffer();
+        System.out.println("creating wBuffer");
         wBuffer = new WriteUpdateBuffer<>(p_num);
+        System.out.println("crating Others");
         nodes = (Node[]) Array.newInstance(nodeInstance.getClass(), Macros.p_size);
         accums = (Accum[]) Array.newInstance(accumInstance.getClass(), Macros.p_size);
         for (int i = 0; i < Macros.p_size; ++i) {

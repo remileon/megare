@@ -50,7 +50,7 @@ public class Storage<Node extends SavableImp, Accum, Update extends SavableImp, 
     public void run() {
         System.out.println("running storage");
         try {
-            ExecutorService fixedThreadPool = Executors.newFixedThreadPool(100);
+            ExecutorService fixedThreadPool = Executors.newFixedThreadPool(Macros.total_machine_number * Macros.k);
             while (true) {
                 Socket socket = ss.accept();
                 fixedThreadPool.execute(new Dealer(socket));
