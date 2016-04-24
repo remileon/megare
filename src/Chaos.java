@@ -26,7 +26,7 @@ public class Chaos {
         if (Macros.machine_number == 0) {
             new Thread(new Barrier()).start();
         }
-//        new Thread(new Storage<NodeWithDegreeDouble, AccumDouble, UpdateDouble, SimpleEdge>(new SimpleEdge(), new UpdateDouble())).start();
+        new Thread(new Storage<NodeWithDegreeDouble, AccumDouble, UpdateDouble, SimpleEdge>(new SimpleEdge(), new UpdateDouble())).start();
         NetBarrier netBarrier = new NetBarrier();
         netBarrier.run();
         CyclicBarrier barrier = new CyclicBarrier(Macros.k, netBarrier);
