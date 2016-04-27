@@ -80,8 +80,8 @@ public class Storage<Node extends SavableImp, Accum, Update extends SavableImp, 
                         break;
                     case Macros.OP_GET_EDGE:
                         p_num = is.read();
-                        synchronized (eFile[p_num]) {
-                            size = eFile[p_num].read(buffer, 4, edgeInstance.align(buffer.length - 4));
+                        synchronized (eFile[p_num - Macros.k * Macros.machine_number]) {
+                            size = eFile[p_num - Macros.k * Macros.machine_number].read(buffer, 4, edgeInstance.align(buffer.length - 4));
                         }
                         Macros.encodeInt(size, buffer, 0);
                         socket.getOutputStream().write(buffer);
