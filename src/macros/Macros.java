@@ -6,7 +6,7 @@ package macros;
 public class Macros {
     public static int k = 8;
     public static int machine_number = 0;
-    public static int total_machine_number = 1;
+    public static int total_machine_number = 2;
     public static int p_size = 1 << 25;
 
     public static int barrier_port = 8862;

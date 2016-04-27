@@ -21,11 +21,11 @@ import java.util.concurrent.CyclicBarrier;
  */
 public class Chaos {
     public static void main(String args[]) throws Exception {
+        Macros.machine_number = Integer.parseInt(args[0]);
         if (args.length > 1) {
             if (args[1].startsWith("g"));
             generateTestEdge();
         }
-        Macros.machine_number = Integer.parseInt(args[0]);
         if (Macros.machine_number == 0) {
             new Thread(new Barrier()).start();
         }
