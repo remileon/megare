@@ -18,7 +18,8 @@ public class Macros {
 
     static {
         machine_ips = new String[total_machine_number];
-        machine_ips[0] = "127.0.0.1";
+        machine_ips[0] = "172.16.3.106";
+        machine_ips[1] = "172.16.3.107";
     }
 
     public static final int OP_ERROR = -1;
