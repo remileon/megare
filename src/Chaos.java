@@ -21,7 +21,10 @@ import java.util.concurrent.CyclicBarrier;
  */
 public class Chaos {
     public static void main(String args[]) throws Exception {
-//        generateTestEdge();
+        if (args.length > 1) {
+            if (args[1].startsWith("g"));
+            generateTestEdge();
+        }
         Macros.machine_number = Integer.parseInt(args[0]);
         if (Macros.machine_number == 0) {
             new Thread(new Barrier()).start();
@@ -68,7 +71,7 @@ public class Chaos {
             file.createNewFile();
             FileOutputStream os = new FileOutputStream(file);
             BufferedOutputStream bos = new BufferedOutputStream(os);
-            for (int j = 0; j < Macros.p_size << 3; ++j) {
+            for (int j = 0; j < Macros.p_size << 5; ++j) {
                 simpleEdge.from = random.nextInt(Macros.p_size) + i * Macros.p_size;
                 simpleEdge.to = random.nextInt(Macros.p_size * Macros.k * Macros.total_machine_number);
                 simpleEdge.save(temp, 0);

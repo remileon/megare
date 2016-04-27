@@ -11,8 +11,8 @@ public class Buffer {
     public int size;
     public boolean end;
 
-    Object readLock = new Object();
-    Object writeLock = new Object();
+    final Object readLock = new Object();
+    final Object writeLock = new Object();
 
     public Buffer() {
         buffer = new byte[Macros.buffer_size];

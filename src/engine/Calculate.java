@@ -11,12 +11,12 @@ import java.util.concurrent.CyclicBarrier;
 /**
  * Created by yibai on 2016/3/22.
  */
-public class Calculate<Node extends SavableImp, Accum, Update extends SimpleUpdate, Edge extends SimpleEdge> implements Runnable {
+public class Calculate<Node extends SavableImp, Accum extends SavableImp, Update extends SimpleUpdate, Edge extends SimpleEdge> implements Runnable {
     public int p_num;
     public CyclicBarrier barrier;
     Algorithm<Node, Accum, Update> algorithm;
-    Node[] nodes;
-    Accum[] accums;
+    byte[] nodes;
+    byte[] accums;
     boolean[] flags;
 
     Buffer buffer;
@@ -42,32 +42,25 @@ public class Calculate<Node extends SavableImp, Accum, Update extends SimpleUpda
         System.out.println("creating wBuffer");
         wBuffer = new WriteUpdateBuffer<>(p_num);
         System.out.println("crating Others");
-        nodes = (Node[]) Array.newInstance(nodeInstance.getClass(), Macros.p_size);
-        accums = (Accum[]) Array.newInstance(accumInstance.getClass(), Macros.p_size);
+        nodes = new byte[Macros.p_size * nodeInstance.size()];
+        accums = new byte[Macros.p_size * nodeInstance.size()];
         for (int i = 0; i < Macros.p_size; ++i) {
-//            nodes[i] = (Node) nodeInstance.getClass().newInstance();
-//            accums[i] = (Accum) accumInstance.getClass().newInstance();
-            nodes[i] = (Node) new NodeWithDegreeDouble();
-            accums[i] = (Accum) new AccumDouble();
+            nodeInstance.save(nodes, i * nodeInstance.size());
+            accumInstance.save(accums, i * accumInstance.size());
         }
         flags = new boolean[Macros.total_machine_number];
         System.out.println("calculate" + p_num + ": construct completed");
     }
 
-    public static int Puzzle(int[] a) {
-        int ret = 0;
-        for (int i = 0; i < a.length; ++i) {
-            ret += new Integer(a[i]).compareTo(0);
-        }
-        return ret;
-    }
-
     public void run() {
         System.out.println("running calculate " + p_num);
+        Thread edgeReader = new Thread(new Reader(Macros.OP_GET_EDGE));
+        Thread updateReader = new Thread(new Reader(Macros.OP_GET_UPDATE));
+
         for (int k = 0; k < 10; ++k) {
             try {
                 System.out.println("calculate" + p_num + ": scatter start");
-                new Thread(new Reader(Macros.OP_GET_EDGE)).start();
+                edgeReader.start();
                 int pos;
                 Edge edge = (Edge) edgeInstance.getClass().newInstance();
                 Update update = (Update) updateInstance.getClass().newInstance();
@@ -81,7 +74,9 @@ public class Calculate<Node extends SavableImp, Accum, Update extends SimpleUpda
                         ++cnt;
                         edge.load(buffer.buffer, i);
                         update.to = edge.to;
-                        algorithm.scatter(update, nodes[edge.from - p_num * Macros.p_size]);
+                        nodeInstance.load(nodes, (edge.from - p_num * Macros.p_size) * nodeInstance.size());
+                        algorithm.scatter(update, nodeInstance);
+                        nodeInstance.save(nodes, (edge.from - p_num * Macros.p_size) * nodeInstance.size());
                         wBuffer.write(update);
                     }
                     buffer.free();
@@ -92,18 +87,23 @@ public class Calculate<Node extends SavableImp, Accum, Update extends SimpleUpda
                 barrier.await();
                 System.out.println("calculate" + p_num + ": gather start");
                 buffer.restart();
-                new Thread(new Reader(Macros.OP_GET_UPDATE)).start();
+                updateReader.start();
                 while ((pos = buffer.read()) > -1) {
                     edge.load(buffer.buffer, pos);
                     int size = Macros.decodeInt(buffer.buffer, pos);
                     for (int i = pos + 4; i < pos + 4 + size; i = i + update.size()) {
                         update.load(buffer.buffer, i);
-                        algorithm.gather(accums[update.to - p_num * Macros.p_size], update);
+                        accumInstance.load(accums, (update.to - p_num * Macros.p_size) * accumInstance.size());
+                        algorithm.gather(accumInstance, update);
+                        accumInstance.save(accums, (update.to - p_num * Macros.p_size) * accumInstance.size());
                     }
                     buffer.free();
                 }
-                for (int i = 0; i < Macros.k; ++i) {
-                    algorithm.apply(nodes[i], accums[i]);
+                for (int i = 0; i < Macros.p_size; ++i) {
+                    accumInstance.load(accums, i * accumInstance.size());
+                    nodeInstance.load(nodes, i * nodeInstance.size());
+                    algorithm.apply(nodeInstance, accumInstance);
+                    nodeInstance.save(nodes, i * nodeInstance.size());
                 }
                 // TODO STEAL
                 System.out.println("calculate" + p_num + ":gather complete");
@@ -116,34 +116,36 @@ public class Calculate<Node extends SavableImp, Accum, Update extends SimpleUpda
     }
 
     private class Reader implements Runnable {
-        boolean[] accessable;
+        boolean[] accessible;
         int op;
         int gap;
+        Thread[] innerReaders;
 
         Reader(int op) {
             this.op = op;
-            accessable = new boolean[Macros.total_machine_number];
+            accessible = new boolean[Macros.total_machine_number];
             for (int i = 0; i < Macros.total_machine_number; ++i) {
-                accessable[i] = true;
+                accessible[i] = true;
+            }
+            int nThreads = Math.min(Macros.total_machine_number, Macros.max_request_num);
+            innerReaders = new Thread[nThreads];
+            for (int i = 0; i < innerReaders.length; ++i) {
+                innerReaders[i] = new Thread(new InnerReader());
             }
         }
 
         public void run() {
-            int nThreads = Math.min(Macros.total_machine_number, Macros.max_request_num);
-            Thread[] threads = new Thread[nThreads];
-            gap = Macros.total_machine_number - nThreads;
-            for (int i = 0; i < nThreads; ++i) {
-                threads[i] = new Thread(new InnerReader());
-                threads[i].start();
+            gap = Macros.total_machine_number - innerReaders.length;
+            for (Thread innerReader : innerReaders) {
+                innerReader.start();
             }
             try {
-                for (int i = 0; i < nThreads; ++i) {
-                    threads[i].join();
+                for (Thread innerReader : innerReaders) {
+                    innerReader.join();
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
             buffer.endWrite();
         }
 
@@ -157,11 +159,11 @@ public class Calculate<Node extends SavableImp, Accum, Update extends SimpleUpda
             @Override
             public void run() {
                 int target;
-                synchronized (accessable) {
+                synchronized (accessible) {
                     do {
                         target = (int) (Math.random() * Macros.total_machine_number);
-                    } while (!accessable[target]);
-                    accessable[target] = false;
+                    } while (!accessible[target]);
+                    accessible[target] = false;
                 }
                 while (true) {
                     try {
@@ -181,22 +183,22 @@ public class Calculate<Node extends SavableImp, Accum, Update extends SimpleUpda
                                 buffer.write(readerBuffer);
                             }
                             if (gap > 0) {
-                                accessable[target] = true;
-                                synchronized (accessable) {
+                                accessible[target] = true;
+                                synchronized (accessible) {
                                     do {
                                         target = (int) (Math.random() * Macros.total_machine_number);
-                                    } while (!accessable[target]);
-                                    accessable[target] = false;
+                                    } while (!accessible[target]);
+                                    accessible[target] = false;
                                 }
                             }
                         } else {
                             if (gap > 0) {
                                 --gap;
-                                synchronized (accessable) {
+                                synchronized (accessible) {
                                     do {
                                         target = (int) (Math.random() * Macros.total_machine_number);
-                                    } while (!accessable[target]);
-                                    accessable[target] = false;
+                                    } while (!accessible[target]);
+                                    accessible[target] = false;
                                 }
                             } else {
                                 break;
