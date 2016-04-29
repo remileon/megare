@@ -81,7 +81,7 @@ public class Storage<Node extends SavableImp, Accum, Update extends SavableImp, 
                     case Macros.OP_GET_EDGE:
                         p_num = is.read();
                         synchronized (eFile[p_num]) {
-                            size = eFile[p_num - Macros.k * Macros.machine_number].read(buffer, 4, edgeInstance.align(buffer.length - 4));
+                            size = eFile[p_num].read(buffer, 4, edgeInstance.align(buffer.length - 4));
                         }
                         Macros.encodeInt(size, buffer, 0);
                         socket.getOutputStream().write(buffer);
@@ -104,7 +104,7 @@ public class Storage<Node extends SavableImp, Accum, Update extends SavableImp, 
                         socket.getOutputStream().write(buffer);
                         break;
                     case Macros.OP_BARRIER:
-                        for (int i = 0; i < Macros.k; ++i) {
+                        for (int i = 0; i < Macros.k * Macros.total_machine_number; ++i) {
                             eFile[i].seek(0);
                         }
                         for (int i = 0; i < uFile.length; ++i) {
