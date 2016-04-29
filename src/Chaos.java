@@ -66,7 +66,7 @@ public class Chaos {
         byte[] temp = new byte[8];
         SimpleEdge simpleEdge = new SimpleEdge();
         Random random = new Random();
-        for (int i = 0; i < Macros.k; ++i) {
+        for (int i = 0; i < Macros.k * Macros.total_machine_number; ++i) {
             File file = new File(Macros.eFilename(Macros.k * Macros.machine_number + i));
             file.createNewFile();
             FileOutputStream os = new FileOutputStream(file);
