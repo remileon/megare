@@ -29,7 +29,7 @@ public class Storage<Node extends SavableImp, Accum, Update extends SavableImp, 
         this.edgeInstance = edgeInstance;
         this.updateInstance = updateInstance;
 
-        eFile = new RandomAccessFile[Macros.k];
+        eFile = new RandomAccessFile[Macros.k * Macros.total_machine_number];
         uFile = new RandomAccessFile[Macros.k * Macros.total_machine_number][Macros.k];
         uFileTop = new int[Macros.k * Macros.total_machine_number];
 
