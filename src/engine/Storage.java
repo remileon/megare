@@ -33,7 +33,7 @@ public class Storage<Node extends SavableImp, Accum, Update extends SavableImp, 
         uFile = new RandomAccessFile[Macros.k * Macros.total_machine_number][Macros.k];
         uFileTop = new int[Macros.k * Macros.total_machine_number];
 
-        for (int i = 0; i < Macros.k; ++i) {
+        for (int i = 0; i < Macros.k * Macros.total_machine_number; ++i) {
             eFile[i] = new RandomAccessFile(Macros.eFilename(Macros.k * Macros.machine_number + i), "r");
         }
 
@@ -80,7 +80,7 @@ public class Storage<Node extends SavableImp, Accum, Update extends SavableImp, 
                         break;
                     case Macros.OP_GET_EDGE:
                         p_num = is.read();
-                        synchronized (eFile[p_num - Macros.k * Macros.machine_number]) {
+                        synchronized (eFile[p_num]) {
                             size = eFile[p_num - Macros.k * Macros.machine_number].read(buffer, 4, edgeInstance.align(buffer.length - 4));
                         }
                         Macros.encodeInt(size, buffer, 0);
