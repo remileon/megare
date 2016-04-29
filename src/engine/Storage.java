@@ -34,7 +34,7 @@ public class Storage<Node extends SavableImp, Accum, Update extends SavableImp, 
         uFileTop = new int[Macros.k * Macros.total_machine_number];
 
         for (int i = 0; i < Macros.k * Macros.total_machine_number; ++i) {
-            eFile[i] = new RandomAccessFile(Macros.eFilename(Macros.k * Macros.machine_number + i), "r");
+            eFile[i] = new RandomAccessFile(Macros.eFilename(i), "r");
         }
 
         for (int i = 0; i < Macros.k * Macros.total_machine_number; ++i) {
