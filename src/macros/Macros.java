@@ -21,7 +21,7 @@ public class Macros {
         machine_ips[0] = "172.16.3.106";
         machine_ips[1] = "172.16.3.107";
         machine_ips[2] = "172.16.3.111";
-        machine_ips[4] = "172.16.3.210";
+        machine_ips[3] = "172.16.3.210";
     }
 
     public static final int OP_ERROR = -1;
