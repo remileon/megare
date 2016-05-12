@@ -6,7 +6,7 @@ package macros;
 public class Macros {
     public static int k = 8;
     public static int machine_number = 0;
-    public static int total_machine_number = 2;
+    public static int total_machine_number = 4;
     public static int p_size = 1 << 25;
 
     public static int barrier_port = 8862;
@@ -20,6 +20,8 @@ public class Macros {
         machine_ips = new String[total_machine_number];
         machine_ips[0] = "172.16.3.106";
         machine_ips[1] = "172.16.3.107";
+        machine_ips[2] = "172.16.3.111";
+        machine_ips[4] = "172.16.3.210";
     }
 
     public static final int OP_ERROR = -1;
