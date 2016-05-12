@@ -95,6 +95,7 @@ public class Chaos {
         public void run() {
             try {
                 new Socket(Macros.machine_ips[0], Macros.barrier_port);
+                System.out.println("waiting for barrier");
                 Socket socket = ss.accept();
             } catch (Exception e) {
                 e.printStackTrace();
