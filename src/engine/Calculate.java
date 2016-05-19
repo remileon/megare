@@ -63,7 +63,7 @@ public class Calculate<Node extends SavableImp, Accum extends SavableImp, Update
                 Edge edge = (Edge) edgeInstance.getClass().newInstance();
                 Update update = (Update) updateInstance.getClass().newInstance();
 
-                if (Macros.start_gather) {
+                if (!Macros.start_gather) {
                     System.out.println("calculate" + p_num + ": scatter start");
                     edgeReader.start();
                     wBuffer.clearFile();
