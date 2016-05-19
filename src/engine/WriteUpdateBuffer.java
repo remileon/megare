@@ -30,8 +30,8 @@ public class WriteUpdateBuffer<Update extends SimpleUpdate> {
     }
 
     public void write(Update u) throws Exception {
-        int p_num = u.to / Macros.p_size;
-        synchronized (buffer[p_num % buffer.length]) {
+        int p_num = u.to / Macros.p_size % buffer.length;
+        synchronized (buffer[p_num]) {
             if (size[p_num] + u.size() > buffer[p_num].length) {
                 fileOutputStream[p_num].write(buffer[p_num], 0, size[p_num]);
                 size[p_num] = 0;

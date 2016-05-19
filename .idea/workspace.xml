@@ -52,8 +52,8 @@
       <file leaf-file-name="WriteUpdateBuffer.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/engine/WriteUpdateBuffer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.56341463" vertical-offset="320" max-vertical-offset="1121">
-              <caret line="33" column="54" selection-start-line="33" selection-start-column="54" selection-end-line="33" selection-end-column="54" />
+            <state vertical-scroll-proportion="0.6097561" vertical-offset="320" max-vertical-offset="1121">
+              <caret line="34" column="19" selection-start-line="34" selection-start-column="19" selection-end-line="34" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -1087,8 +1087,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/engine/WriteUpdateBuffer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.56341463" vertical-offset="320" max-vertical-offset="1121">
-          <caret line="33" column="54" selection-start-line="33" selection-start-column="54" selection-end-line="33" selection-end-column="54" />
+        <state vertical-scroll-proportion="0.6097561" vertical-offset="320" max-vertical-offset="1121">
+          <caret line="34" column="19" selection-start-line="34" selection-start-column="19" selection-end-line="34" selection-end-column="19" />
           <folding />
         </state>
       </provider>
