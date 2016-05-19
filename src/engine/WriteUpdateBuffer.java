@@ -23,7 +23,9 @@ public class WriteUpdateBuffer<Update extends SimpleUpdate> {
         for (int i = 0; i < Macros.total_machine_number * Macros.k; ++i) {
             File file = new File(Macros.uFilename(i, p_num));
             file.createNewFile();
-            fileOutputStream[i] = new FileOutputStream(file);
+            if (!Macros.start_gather) {
+                fileOutputStream[i] = new FileOutputStream(file);
+            }
         }
     }
 
