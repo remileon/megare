@@ -1,4 +1,6 @@
 import algorithm.PageRank;
+import algorithm.PageRankH;
+import api.Algorithm;
 import engine.Barrier;
 import engine.Calculate;
 import engine.Storage;
@@ -23,12 +25,15 @@ import java.util.concurrent.CyclicBarrier;
 public class Chaos {
     public static void main(String args[]) throws Exception {
         Macros.machine_number = Integer.parseInt(args[0]);
+        Algorithm algorithm = new PageRank();
         if (args.length > 1) {
             for (int i = 1; i < args.length; ++i) {
                 if (args[i].equals("g"))
                     generateTestEdge();
                 if (args[i].equals("gather"))
                     Macros.start_gather = true;
+                if (args[i].equals("H"))
+                    algorithm = new PageRankH();
             }
         }
         if (Macros.machine_number <= 0) {
@@ -45,7 +50,7 @@ public class Chaos {
         CyclicBarrier barrier = new CyclicBarrier(Macros.k, netBarrier);
         Thread[] calculators = new Thread[Macros.k];
         for (int i = 0; i < Macros.k; ++i) {
-            calculators[i] = new Thread(new Calculate<>(Macros.machine_number * Macros.k + i, barrier, new PageRank(), new SimpleEdge(), new UpdateDouble(), new NodeWithDegreeDouble(), new AccumDouble()));
+            calculators[i] = new Thread(new Calculate<>(Macros.machine_number * Macros.k + i, barrier, algorithm, new SimpleEdge(), new UpdateDouble(), new NodeWithDegreeDouble(), new AccumDouble()));
         }
         for (int i = 0; i < Macros.k; ++i) {
             calculators[i].start();
