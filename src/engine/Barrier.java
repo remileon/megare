@@ -27,6 +27,7 @@ public class Barrier implements Runnable {
 
             while (true) {
                 Socket socket = ss.accept();
+                socket.getInetAddress().getHostAddress();
                 --t;
                 if (t == 0) {
                     sender.start();

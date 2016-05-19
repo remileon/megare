@@ -8,6 +8,7 @@ import model.NodeWithDegreeDouble;
 import model.SimpleEdge;
 import model.UpdateDouble;
 
+import javax.crypto.Mac;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -23,11 +24,20 @@ public class Chaos {
     public static void main(String args[]) throws Exception {
         Macros.machine_number = Integer.parseInt(args[0]);
         if (args.length > 1) {
-            if (args[1].startsWith("g"));
-            generateTestEdge();
+            for (int i = 1; i < args.length; ++i) {
+                if (args[i].equals("g"))
+                    generateTestEdge();
+                if (args[i].equals("gather"))
+                    Macros.start_gather = true;
+            }
         }
-        if (Macros.machine_number == 0) {
+        if (Macros.machine_number <= 0) {
             new Thread(new Barrier()).start();
+        }
+        if (Macros.machine_number == -1) {
+            Macros.total_machine_number = 1;
+            Macros.machine_number = 0;
+            Macros.machine_ips[0] = "127.0.0.1";
         }
         new Thread(new Storage<NodeWithDegreeDouble, AccumDouble, UpdateDouble, SimpleEdge>(new SimpleEdge(), new UpdateDouble())).start();
         NetBarrier netBarrier = new NetBarrier();

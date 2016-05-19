@@ -59,32 +59,38 @@ public class Calculate<Node extends SavableImp, Accum extends SavableImp, Update
 
         for (int k = 0; k < 10; ++k) {
             try {
-                System.out.println("calculate" + p_num + ": scatter start");
-                edgeReader.start();
                 int pos;
                 Edge edge = (Edge) edgeInstance.getClass().newInstance();
                 Update update = (Update) updateInstance.getClass().newInstance();
-                wBuffer.clearFile();
-                buffer.restart();
-                int cnt = 0;
-                while ((pos = buffer.read()) > -1) {
-                    edge.load(buffer.buffer, pos);
-                    int size = Macros.decodeInt(buffer.buffer, pos);
-                    for (int i = pos + 4; i < pos + 4 + size; i = i + edge.size()) {
-                        ++cnt;
-                        edge.load(buffer.buffer, i);
-                        update.to = edge.to;
-                        nodeInstance.load(nodes, (edge.from - p_num * Macros.p_size) * nodeInstance.size());
-                        algorithm.scatter(update, nodeInstance);
-                        nodeInstance.save(nodes, (edge.from - p_num * Macros.p_size) * nodeInstance.size());
-                        wBuffer.write(update);
+
+                if (Macros.start_gather) {
+                    System.out.println("calculate" + p_num + ": scatter start");
+                    edgeReader.start();
+                    wBuffer.clearFile();
+                    buffer.restart();
+                    int cnt = 0;
+                    while ((pos = buffer.read()) > -1) {
+                        edge.load(buffer.buffer, pos);
+                        int size = Macros.decodeInt(buffer.buffer, pos);
+                        for (int i = pos + 4; i < pos + 4 + size; i = i + edge.size()) {
+                            ++cnt;
+                            edge.load(buffer.buffer, i);
+                            update.to = edge.to;
+//                        nodeInstance.load(nodes, (edge.from - p_num * Macros.p_size) * nodeInstance.size());
+                            nodeInstance.load(nodes, (edge.from % Macros.p_size) * nodeInstance.size());
+                            algorithm.scatter(update, nodeInstance);
+//                        nodeInstance.save(nodes, (edge.from - p_num * Macros.p_size) * nodeInstance.size());
+                            nodeInstance.save(nodes, (edge.from % Macros.p_size) * nodeInstance.size());
+                            wBuffer.write(update);
+                        }
+                        buffer.free();
                     }
-                    buffer.free();
+                    // TODO STEAL
+                    wBuffer.flush();
+                    System.out.println("calculate" + p_num + ": scatter complete:" + cnt + "edges");
+                    barrier.await();
                 }
-                // TODO STEAL
-                wBuffer.flush();
-                System.out.println("calculate" + p_num + ": scatter complete:" + cnt + "edges");
-                barrier.await();
+
                 System.out.println("calculate" + p_num + ": gather start");
                 buffer.restart();
                 updateReader.start();
@@ -93,9 +99,11 @@ public class Calculate<Node extends SavableImp, Accum extends SavableImp, Update
                     int size = Macros.decodeInt(buffer.buffer, pos);
                     for (int i = pos + 4; i < pos + 4 + size; i = i + update.size()) {
                         update.load(buffer.buffer, i);
-                        accumInstance.load(accums, (update.to - p_num * Macros.p_size) * accumInstance.size());
+//                        accumInstance.load(accums, (update.to - p_num * Macros.p_size) * accumInstance.size());
+                        accumInstance.load(accums, (update.to % Macros.p_size) * accumInstance.size());
                         algorithm.gather(accumInstance, update);
-                        accumInstance.save(accums, (update.to - p_num * Macros.p_size) * accumInstance.size());
+//                        accumInstance.save(accums, (update.to - p_num * Macros.p_size) * accumInstance.size());
+                        accumInstance.save(accums, (update.to % Macros.p_size) * accumInstance.size());
                     }
                     buffer.free();
                 }
