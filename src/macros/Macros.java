@@ -4,6 +4,8 @@ package macros;
  * Created by yibai on 2016/3/22.
  */
 public class Macros {
+    public static boolean start_gather = false;
+
     public static int k = 8;
     public static int machine_number = 0;
     public static int total_machine_number = 4;
