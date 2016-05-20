@@ -1,6 +1,7 @@
 import algorithm.PageRank;
 import algorithm.PageRankH;
 import api.Algorithm;
+import compress.ZLib;
 import engine.Barrier;
 import engine.Calculate;
 import engine.Storage;
@@ -34,6 +35,9 @@ public class Chaos {
                     Macros.start_gather = true;
                 if (args[i].equals("H"))
                     algorithm = new PageRankH();
+                if (args[i].equals("zlib")) {
+                    Macros.compressor = new ZLib();
+                }
             }
         }
         if (Macros.machine_number <= 0) {

@@ -1,22 +1,26 @@
 package macros;
 
+import compress.Compressor;
+
 /**
  * Created by yibai on 2016/3/22.
  */
 public class Macros {
     public static boolean start_gather = false;
 
+    public static Compressor compressor;
+
     public static int k = 8;
     public static int machine_number = 0;
     public static int total_machine_number = 4;
-    public static int p_size = 1 << 25;
+    public static int p_size = 1 << 23;
 
     public static int barrier_port = 8862;
     public static int barrier_port2 = 7862;
     public static String[] machine_ips;
 
-    public static int buffer_size = 1 << 27;
-    public static int trunk_size = 1 << 22;
+    public static int buffer_size = 1 << 25;
+    public static int trunk_size = 1 << 20;
 
     static {
         machine_ips = new String[total_machine_number];

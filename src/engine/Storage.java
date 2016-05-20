@@ -18,7 +18,7 @@ import java.util.concurrent.Executors;
 public class Storage<Node extends SavableImp, Accum, Update extends SavableImp, Edge extends SimpleEdge> implements Runnable {
     RandomAccessFile[] eFile;
     RandomAccessFile[][] uFile;
-    int uFileTop[];
+    UpdateReader[] uReader;
 
     Edge edgeInstance;
     Update updateInstance;
@@ -31,17 +31,18 @@ public class Storage<Node extends SavableImp, Accum, Update extends SavableImp, 
 
         eFile = new RandomAccessFile[Macros.k * Macros.total_machine_number];
         uFile = new RandomAccessFile[Macros.k * Macros.total_machine_number][Macros.k];
-        uFileTop = new int[Macros.k * Macros.total_machine_number];
 
         for (int i = 0; i < Macros.k * Macros.total_machine_number; ++i) {
             eFile[i] = new RandomAccessFile(Macros.eFilename(i), "r");
         }
 
+        uReader = new UpdateReader[Macros.k * Macros.total_machine_number];
         for (int i = 0; i < Macros.k * Macros.total_machine_number; ++i) {
             for (int from = 0; from < Macros.k; ++from) {
                 new File(Macros.uFilename(i, from + Macros.machine_number * Macros.k)).createNewFile();
                 uFile[i][from] = new RandomAccessFile(Macros.uFilename(i, from + Macros.machine_number * Macros.k), "r");
             }
+            uReader[i] = new UpdateReader(uFile[i]);
         }
 
         ss = new ServerSocket(5765);
@@ -90,16 +91,7 @@ public class Storage<Node extends SavableImp, Accum, Update extends SavableImp, 
                         break;
                     case Macros.OP_GET_UPDATE:
                         p_num = is.read();
-                        synchronized (uFile[p_num]) {
-                            size = uFile[p_num][uFileTop[p_num]].read(buffer, 4, updateInstance.align(buffer.length - 4));
-                            while (size == -1) {
-                                ++uFileTop[p_num];
-                                if (uFileTop[p_num] >= uFile[p_num].length) {
-                                    break;
-                                }
-                                size = uFile[p_num][uFileTop[p_num]].read(buffer, 4, updateInstance.align(buffer.length - 4));
-                            }
-                        }
+                        size = uReader[p_num].get(buffer, 4, updateInstance.align(buffer.length - 4));
                         Macros.encodeInt(size, buffer, 0);
                         socket.getOutputStream().write(buffer);
                         break;
@@ -108,7 +100,7 @@ public class Storage<Node extends SavableImp, Accum, Update extends SavableImp, 
                             eFile[i].seek(0);
                         }
                         for (int i = 0; i < uFile.length; ++i) {
-                            uFileTop[i] = 0;
+                            uReader[i].top = 0;
                             for (int j = 0; j < uFile[i].length; ++j) {
                                 uFile[i][j].seek(0);
                             }
