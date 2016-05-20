@@ -52,7 +52,7 @@ public class WriteUpdateBuffer<Update extends SimpleUpdate> {
                     }
                     Macros.encodeInt(compressed_size, temp, 0);
                     fileOutputStream[p_num].write(temp);
-                    fileOutputStream[p_num].write(compressed);
+                    fileOutputStream[p_num].write(compressed, 0, compressed_size);
                 } else {
                     fileOutputStream[p_num].write(buffer[p_num], 0, size[p_num]);
                 }
@@ -75,7 +75,7 @@ public class WriteUpdateBuffer<Update extends SimpleUpdate> {
                 }
                 Macros.encodeInt(compressed_size, temp, 0);
                 fileOutputStream[p_num].write(temp);
-                fileOutputStream[p_num].write(compressed);
+                fileOutputStream[p_num].write(compressed, 0, compressed_size);
             } else {
                 fileOutputStream[i].write(buffer[i], 0, size[i]);
             }
