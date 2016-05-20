@@ -20,11 +20,13 @@ public class WriteUpdateBuffer<Update extends SimpleUpdate> {
     long total_length_compressed = 0;
     long total_num = 0;
 
+    public byte[] compressed;
     private byte[] temp = new byte[4];
 
     public WriteUpdateBuffer(int p_num) throws Exception {
         buffer = new byte[Macros.total_machine_number * Macros.k][Macros.buffer_size >> 2];
         size = new int[Macros.total_machine_number * Macros.k];
+        compressed = new byte[Macros.buffer_size >> 1];
         fileOutputStream = new FileOutputStream[Macros.total_machine_number * Macros.k];
         this.p_num = p_num;
         for (int i = 0; i < Macros.total_machine_number * Macros.k; ++i) {
@@ -41,14 +43,14 @@ public class WriteUpdateBuffer<Update extends SimpleUpdate> {
         synchronized (buffer[p_num]) {
             if (size[p_num] + u.size() > buffer[p_num].length) {
                 if (Macros.compressor != null) {
-                    byte[] compressed = Macros.compressor.compress(buffer[p_num], size[p_num]);
+                    int compressed_size = Macros.compressor.compress(buffer[p_num], size[p_num], compressed);
                     total_length += size[p_num];
-                    total_length_compressed += compressed.length + 4;
+                    total_length_compressed += compressed_size + 4;
                     total_num += 1;
                     if (total_num % 10 == 0) {
                         System.out.println("total_num:" + total_num + " total_length:" + total_length + " compressed:" + total_length_compressed);
                     }
-                    Macros.encodeInt(compressed.length, temp, 0);
+                    Macros.encodeInt(compressed_size, temp, 0);
                     fileOutputStream[p_num].write(temp);
                     fileOutputStream[p_num].write(compressed);
                 } else {
@@ -64,14 +66,14 @@ public class WriteUpdateBuffer<Update extends SimpleUpdate> {
     public void flush() throws Exception {
         for (int i = 0; i < buffer.length; ++i) {
             if (Macros.compressor != null) {
-                byte[] compressed = Macros.compressor.compress(buffer[p_num], size[p_num]);
+                int compressed_size = Macros.compressor.compress(buffer[p_num], size[p_num], compressed);
                 total_length += size[p_num];
-                total_length_compressed += compressed.length + 4;
+                total_length_compressed += compressed_size + 4;
                 total_num += 1;
                 if (total_num % 10 == 0) {
                     System.out.println("total_num:" + total_num + " total_length:" + total_length + " compressed:" + total_length_compressed + "rate:" + ((double)total_length_compressed / total_length));
                 }
-                Macros.encodeInt(compressed.length, temp, 0);
+                Macros.encodeInt(compressed_size, temp, 0);
                 fileOutputStream[p_num].write(temp);
                 fileOutputStream[p_num].write(compressed);
             } else {

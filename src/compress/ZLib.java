@@ -13,33 +13,19 @@ import java.util.zip.InflaterInputStream;
  * Created by yibai on 2016/5/19.
  */
 public class ZLib implements Compressor {
-
-    public byte[] compress(byte[] data, int len) {
-        byte[] output = new byte[0];
+    public int compress(byte[] data, int len, byte[] out) {
         Deflater compresser = new Deflater();
         compresser.reset();
         compresser.setInput(data, 0, len);
         compresser.finish();
-        ByteArrayOutputStream bos = new ByteArrayOutputStream(data.length);
+        int size = -1;
         try {
-            byte[] buf = new byte[1024];
-            while (!compresser.finished()) {
-                int i = compresser.deflate(buf);
-                bos.write(buf, 0, i);
-            }
-            output = bos.toByteArray();
+            size = compresser.deflate(out);
         } catch (Exception e) {
-            output = data;
             e.printStackTrace();
-        } finally {
-            try {
-                bos.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
         compresser.end();
-        return output;
+        return size;
     }
 
     public void compress(byte[] data, OutputStream os) {
@@ -53,31 +39,20 @@ public class ZLib implements Compressor {
         }
     }
 
-    public byte[] decompress(byte[] data, int len) {
-        byte[] output = new byte[0];
+    public int decompress(byte[] data, int len, byte[] out) {
         Inflater decompresser = new Inflater();
         decompresser.reset();
         decompresser.setInput(data, 0, len);
-        ByteArrayOutputStream o = new ByteArrayOutputStream(data.length);
+        int size = 0;
         try {
-            byte[] buf = new byte[1024];
             while (!decompresser.finished()) {
-                int i = decompresser.inflate(buf);
-                o.write(buf, 0, i);
+                size = decompresser.inflate(out);
             }
-            output = o.toByteArray();
         } catch (Exception e) {
-            output = data;
             e.printStackTrace();
-        } finally {
-            try {
-                o.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
         decompresser.end();
-        return output;
+        return size;
     }
 
     public byte[] decompress(InputStream is) {

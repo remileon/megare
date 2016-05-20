@@ -14,6 +14,7 @@ public class UpdateReader {
 
 
     public byte raw[];
+    public byte result[];
     public byte buffer[];
     public int now;
     public int size;
@@ -24,10 +25,10 @@ public class UpdateReader {
         this.uFiles = uFiles;
         buffer = new byte[Macros.buffer_size];
         raw = new byte[Macros.buffer_size >> 1];
+        result = new byte[Macros.buffer_size >> 1];
     }
     public int get(byte[] dst, int off, int len) throws Exception {
         while (size < len) {
-            byte[] result;
             int result_size;
             if (Macros.compressor != null) {
                 boolean has_value = uFiles[top].read(temp) > 0;
@@ -42,8 +43,7 @@ public class UpdateReader {
                 }
                 int size = Macros.decodeInt(temp, 0);
                 uFiles[top].read(raw, 0, size);
-                result = Macros.compressor.decompress(raw, size);
-                result_size = result.length;
+                result_size = Macros.compressor.decompress(raw, size, result);
             } else {
                 int value_size = uFiles[top].read(raw);
                 while (value_size <= 0 && top < uFiles.length) {
