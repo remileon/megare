@@ -49,11 +49,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UpdateReader.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="UpdateReader.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/engine/UpdateReader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="493" max-vertical-offset="1615">
-              <caret line="30" column="30" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
+            <state vertical-scroll-proportion="0.2677966" vertical-offset="757" max-vertical-offset="1596">
+              <caret line="44" column="57" selection-start-line="44" selection-start-column="57" selection-end-line="44" selection-end-column="57" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -61,10 +61,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WriteUpdateBuffer.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="WriteUpdateBuffer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/engine/WriteUpdateBuffer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.9614148" vertical-offset="447" max-vertical-offset="1767">
+            <state vertical-scroll-proportion="0.0" vertical-offset="390" max-vertical-offset="1767">
               <caret line="77" column="49" selection-start-line="77" selection-start-column="49" selection-end-line="77" selection-end-column="49" />
               <folding />
             </state>
@@ -74,8 +74,8 @@
       <file leaf-file-name="ZLib.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/compress/ZLib.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="456" max-vertical-offset="1482">
-              <caret line="23" column="49" selection-start-line="23" selection-start-column="49" selection-end-line="23" selection-end-column="49" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="342" max-vertical-offset="1463">
+              <caret line="22" column="43" selection-start-line="22" selection-start-column="43" selection-end-line="22" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -142,10 +142,10 @@
         <option value="$PROJECT_DIR$/src/Chaos.java" />
         <option value="$PROJECT_DIR$/src/engine/Storage.java" />
         <option value="$PROJECT_DIR$/src/compress/Compressor.java" />
-        <option value="$PROJECT_DIR$/src/engine/UpdateReader.java" />
         <option value="$PROJECT_DIR$/src/macros/Macros.java" />
-        <option value="$PROJECT_DIR$/src/compress/ZLib.java" />
         <option value="$PROJECT_DIR$/src/engine/WriteUpdateBuffer.java" />
+        <option value="$PROJECT_DIR$/src/compress/ZLib.java" />
+        <option value="$PROJECT_DIR$/src/engine/UpdateReader.java" />
       </list>
     </option>
   </component>
@@ -996,16 +996,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/engine/UpdateReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="493" max-vertical-offset="1615">
-          <caret line="30" column="30" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/macros/Macros.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="487" max-vertical-offset="1539">
@@ -1027,8 +1017,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/compress/ZLib.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="456" max-vertical-offset="1482">
-          <caret line="23" column="49" selection-start-line="23" selection-start-column="49" selection-end-line="23" selection-end-column="49" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="342" max-vertical-offset="1463">
+          <caret line="22" column="43" selection-start-line="22" selection-start-column="43" selection-end-line="22" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1037,9 +1027,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/engine/WriteUpdateBuffer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.9614148" vertical-offset="447" max-vertical-offset="1767">
+        <state vertical-scroll-proportion="0.0" vertical-offset="390" max-vertical-offset="1767">
           <caret line="77" column="49" selection-start-line="77" selection-start-column="49" selection-end-line="77" selection-end-column="49" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/engine/UpdateReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2677966" vertical-offset="757" max-vertical-offset="1596">
+          <caret line="44" column="57" selection-start-line="44" selection-start-column="57" selection-end-line="44" selection-end-column="57" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

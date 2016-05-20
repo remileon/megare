@@ -21,7 +21,6 @@ public class ZLib implements Compressor {
         int size = -1;
         try {
             size = compresser.deflate(out);
-            System.out.println("i" + size + len);
         } catch (Exception e) {
             e.printStackTrace();
         }

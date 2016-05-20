@@ -43,7 +43,6 @@ public class UpdateReader {
                         return -1;
                     }
                     int size = Macros.decodeInt(temp, 0);
-                    System.out.println(raw.length + " " + size);
                     int cur = 0;
                     do {
                         cur += uFiles[top].read(raw, cur, size - cur);
