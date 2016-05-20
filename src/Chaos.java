@@ -2,6 +2,7 @@ import algorithm.PageRank;
 import algorithm.PageRankH;
 import api.Algorithm;
 import compress.ZLib;
+import compress.Zip;
 import engine.Barrier;
 import engine.Calculate;
 import engine.Storage;
@@ -37,6 +38,9 @@ public class Chaos {
                     algorithm = new PageRankH();
                 if (args[i].equals("zlib")) {
                     Macros.compressor = new ZLib();
+                }
+                if (args[i].equals("zip")) {
+                    Macros.compressor = new Zip();
                 }
             }
         }
