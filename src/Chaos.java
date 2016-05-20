@@ -3,6 +3,7 @@ import algorithm.PageRankH;
 import api.Algorithm;
 import compress.ZLib;
 import compress.Zip;
+import compress.tSnappy;
 import engine.Barrier;
 import engine.Calculate;
 import engine.Storage;
@@ -41,6 +42,9 @@ public class Chaos {
                 }
                 if (args[i].equals("zip")) {
                     Macros.compressor = new Zip();
+                }
+                if (args[i].equals("snappy")) {
+                    Macros.compressor = new tSnappy();
                 }
             }
         }
