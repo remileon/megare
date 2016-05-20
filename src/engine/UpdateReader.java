@@ -42,6 +42,7 @@ public class UpdateReader {
                     return -1;
                 }
                 int size = Macros.decodeInt(temp, 0);
+                System.out.println(raw.length + " " + size);
                 uFiles[top].read(raw, 0, size);
                 result_size = Macros.compressor.decompress(raw, size, result);
             } else {
