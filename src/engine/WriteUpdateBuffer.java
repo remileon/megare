@@ -24,7 +24,7 @@ public class WriteUpdateBuffer<Update extends SimpleUpdate> {
     private byte[] temp = new byte[4];
 
     public WriteUpdateBuffer(int p_num) throws Exception {
-        buffer = new byte[Macros.total_machine_number * Macros.k][Macros.buffer_size >> 2];
+        buffer = new byte[Macros.total_machine_number * Macros.k][Macros.buffer_size >> 3];
         size = new int[Macros.total_machine_number * Macros.k];
         compressed = new byte[Macros.buffer_size >> 1];
         fileOutputStream = new FileOutputStream[Macros.total_machine_number * Macros.k];
