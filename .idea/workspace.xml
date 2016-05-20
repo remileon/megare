@@ -25,10 +25,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Chaos.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Chaos.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Chaos.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.85209006" vertical-offset="609" max-vertical-offset="2622">
+            <state vertical-scroll-proportion="0.0" vertical-offset="609" max-vertical-offset="2622">
               <caret line="46" column="54" selection-start-line="46" selection-start-column="54" selection-end-line="46" selection-end-column="54" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -105,11 +105,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Macros.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Macros.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/macros/Macros.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="487" max-vertical-offset="1539">
-              <caret line="21" column="43" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
+            <state vertical-scroll-proportion="0.67202574" vertical-offset="76" max-vertical-offset="1539">
+              <caret line="15" column="38" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -143,7 +143,6 @@
         <option value="$PROJECT_DIR$/src/compress/Compersser.java" />
         <option value="$PROJECT_DIR$/src/engine/Storage.java" />
         <option value="$PROJECT_DIR$/src/compress/Compressor.java" />
-        <option value="$PROJECT_DIR$/src/macros/Macros.java" />
         <option value="$PROJECT_DIR$/src/compress/ZLib.java" />
         <option value="$PROJECT_DIR$/src/engine/UpdateReader.java" />
         <option value="$PROJECT_DIR$/src/engine/WriteUpdateBuffer.java" />
@@ -151,6 +150,7 @@
         <option value="$PROJECT_DIR$/src/compress/Snappy.java" />
         <option value="$PROJECT_DIR$/src/compress/tSnappy.java" />
         <option value="$PROJECT_DIR$/src/Chaos.java" />
+        <option value="$PROJECT_DIR$/src/macros/Macros.java" />
       </list>
     </option>
   </component>
@@ -249,61 +249,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Network" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="megare" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="megare" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="macros" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="megare" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="megare" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="engine" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="megare" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="megare" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="compress" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -331,7 +277,7 @@
     <property name="OverrideImplement.overriding.sorted" value="false" />
     <property name="LayoutCode.rearrangeEntriesJava" value="false" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://F:/megare/src/engine/Storage.java" />
-    <property name="options.lastSelected" value="configurable.group.appearance" />
+    <property name="options.lastSelected" value="preferences.pathVariables" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="LayoutCode.rearrangeEntries" value="false" />
@@ -935,14 +881,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/macros/Macros.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="487" max-vertical-offset="1539">
-          <caret line="21" column="43" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://D:/Program Files/Java/jdk1.8.0_45/src.zip!/java/util/zip/Deflater.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334" vertical-offset="9791" max-vertical-offset="10127">
@@ -1044,11 +982,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Chaos.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.85209006" vertical-offset="609" max-vertical-offset="2622">
+        <state vertical-scroll-proportion="0.0" vertical-offset="609" max-vertical-offset="2622">
           <caret line="46" column="54" selection-start-line="46" selection-start-column="54" selection-end-line="46" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/macros/Macros.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.67202574" vertical-offset="76" max-vertical-offset="1539">
+          <caret line="15" column="38" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
+          <folding />
         </state>
       </provider>
     </entry>
