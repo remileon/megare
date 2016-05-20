@@ -61,12 +61,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WriteUpdateBuffer.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="WriteUpdateBuffer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/engine/WriteUpdateBuffer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.57877815" vertical-offset="675" max-vertical-offset="1710">
+            <state vertical-scroll-proportion="0.0" vertical-offset="675" max-vertical-offset="1710">
               <caret line="50" column="166" selection-start-line="50" selection-start-column="166" selection-end-line="50" selection-end-column="166" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Zip.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/compress/Zip.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.6481481" vertical-offset="588" max-vertical-offset="969">
+              <caret line="42" column="18" selection-start-line="42" selection-start-column="18" selection-end-line="42" selection-end-column="18" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -146,6 +158,7 @@
         <option value="$PROJECT_DIR$/src/compress/ZLib.java" />
         <option value="$PROJECT_DIR$/src/engine/UpdateReader.java" />
         <option value="$PROJECT_DIR$/src/engine/WriteUpdateBuffer.java" />
+        <option value="$PROJECT_DIR$/src/compress/Zip.java" />
       </list>
     </option>
   </component>
@@ -655,20 +668,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/api/Algorithm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="95" max-vertical-offset="304">
-          <caret line="5" column="36" selection-start-line="5" selection-start-column="36" selection-end-line="5" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/algorithm/PageRank.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="627">
-          <caret line="24" column="17" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/UpdateDouble.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="133" max-vertical-offset="323">
@@ -935,13 +934,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://D:/Program Files/Java/jdk1.8.0_45/src.zip!/java/io/OutputStream.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33189654" vertical-offset="568" max-vertical-offset="2603">
-          <caret line="61" column="25" selection-start-line="61" selection-start-column="25" selection-end-line="61" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/engine/Calculate.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="299" max-vertical-offset="4294">
@@ -989,8 +981,8 @@
         <state vertical-scroll-proportion="0.33333334" vertical-offset="9791" max-vertical-offset="10127">
           <caret line="562" column="23" selection-start-line="562" selection-start-column="23" selection-end-line="562" selection-end-column="23" />
           <folding>
-            <element signature="e#12027#12028#0" expanded="true" />
-            <element signature="e#12083#12084#0" expanded="true" />
+            <element signature="e#12027#12028#0" expanded="false" />
+            <element signature="e#12083#12084#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1037,9 +1029,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/engine/WriteUpdateBuffer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.57877815" vertical-offset="675" max-vertical-offset="1710">
+        <state vertical-scroll-proportion="0.0" vertical-offset="675" max-vertical-offset="1710">
           <caret line="50" column="166" selection-start-line="50" selection-start-column="166" selection-end-line="50" selection-end-column="166" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/Program Files/Java/jdk1.8.0_45/src.zip!/java/io/ByteArrayOutputStream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6851852" vertical-offset="2856" max-vertical-offset="4864">
+          <caret line="189" column="29" selection-start-line="189" selection-start-column="29" selection-end-line="189" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/Program Files/Java/jdk1.8.0_45/src.zip!/java/io/OutputStream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.425926" vertical-offset="1412" max-vertical-offset="2603">
+          <caret line="73" column="16" selection-start-line="73" selection-start-column="16" selection-end-line="73" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/compress/Zip.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6481481" vertical-offset="588" max-vertical-offset="969">
+          <caret line="42" column="18" selection-start-line="42" selection-start-column="18" selection-end-line="42" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
