@@ -47,8 +47,8 @@ public class WriteUpdateBuffer<Update extends SimpleUpdate> {
                     total_length += size[p_num];
                     total_length_compressed += compressed_size + 4;
                     total_num += 1;
-                    if (total_num % 10 == 0) {
-                        System.out.println("total_num:" + total_num + " total_length:" + total_length + " compressed:" + total_length_compressed);
+                    if (total_num % 100 == 0) {
+                        System.out.println("total_num:" + total_num + " total_length:" + total_length + " compressed:" + total_length_compressed + " rate:" + (double)total_length_compressed/total_length);
                     }
                     Macros.encodeInt(compressed_size, temp, 0);
                     fileOutputStream[p_num].write(temp);
@@ -70,9 +70,6 @@ public class WriteUpdateBuffer<Update extends SimpleUpdate> {
                 total_length += size[p_num];
                 total_length_compressed += compressed_size + 4;
                 total_num += 1;
-                if (total_num % 10 == 0) {
-                    System.out.println("total_num:" + total_num + " total_length:" + total_length + " compressed:" + total_length_compressed + "rate:" + ((double)total_length_compressed / total_length));
-                }
                 Macros.encodeInt(compressed_size, temp, 0);
                 fileOutputStream[p_num].write(temp);
                 fileOutputStream[p_num].write(compressed, 0, compressed_size);
