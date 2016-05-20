@@ -22,9 +22,9 @@ public class UpdateReader {
 
     public UpdateReader(RandomAccessFile[] uFiles) {
         this.uFiles = uFiles;
-        buffer = new byte[Macros.buffer_size];
-        raw = new byte[Macros.buffer_size >> 1];
-        result = new byte[Macros.buffer_size >> 1];
+        buffer = new byte[Macros.buffer_size >> 1];
+        raw = new byte[Macros.buffer_size >> 2];
+        result = new byte[Macros.buffer_size >> 2];
     }
 
     public int get(byte[] dst, int off, int len) throws Exception {
